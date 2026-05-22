@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="ru" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>АРЕНА — Киберспортивный Комплекс нового поколения</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #030303;
+        }
+        .font-display {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .neon-glow:hover {
+            box-shadow: 0 0 50px rgba(52, 211, 153, 0.2);
+            border-color: rgba(52, 211, 153, 0.4);
+        }
+        .btn-tactile {
+            transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s;
+        }
+        .btn-tactile:active {
+            transform: scale(0.95) !important;
+        }
+        .faq-border {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .faq-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+    </style>
+</head>
+<body class="text-zinc-100 overflow-x-hidden antialiased bg-[#030303]">
+
+    <div class="fixed inset-0 w-full h-full z-0 pointer-events-none select-none">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#030303]/40 via-[#030303]/85 to-[#030303] z-10"></div>
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#111115_1px,transparent_1px),linear-gradient(to_bottom,#111115_1px,transparent_1px)] bg-[size:6rem_6rem] opacity-[0.18] z-20"></div>
+        
+        <video class="w-full h-full object-cover opacity-35" autoplay muted loop playsinline preload="auto">
+            <source src="background_loop.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#030303]/70 backdrop-blur-md border-b border-white/5 px-6 md:px-12 py-5">
+        <div class="max-w-[1400px] mx-auto flex justify-between items-center">
+            <span class="font-display text-2xl font-800 tracking-tighter text-white uppercase">Арена</span>
+            <div class="hidden md:flex space-x-12 text-[11px] font-semibold uppercase tracking-widest text-zinc-400">
+                <a href="#rates" class="hover:text-emerald-400 transition-colors">Зоны и Тарифы</a>
+                <a href="#bar" class="hover:text-emerald-400 transition-colors">АРЕНА БАР</a>
+                <a href="#faq" class="hover:text-emerald-400 transition-colors">Вопросы</a>
+                <a href="#footer" class="hover:text-emerald-400 transition-colors">Контакты</a>
+            </div>
+            <button onclick="openModal()" class="btn-tactile text-[11px] font-bold uppercase tracking-widest bg-emerald-400 text-zinc-950 px-6 py-3 hover:bg-emerald-300 transition-all rounded-sm font-display">
+                Забронировать ПК
+            </button>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[100dvh] w-full flex items-center px-6 md:px-12 overflow-hidden border-b border-white/5 z-30">
+        <div class="max-w-[1400px] w-full mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative pt-20">
+            <div class="lg:col-span-7 space-y-8">
+                <div class="inline-flex items-center gap-3 px-3 py-1.5 bg-zinc-900/80 border border-white/5 text-emerald-400 text-xs font-mono tracking-widest uppercase rounded-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Ставрополь • Работаем 24/7
+                </div>
+                <h1 class="font-display text-5xl md:text-7xl lg:text-8xl font-800 tracking-tighter leading-[0.85] text-white uppercase">
+                    ТВОЙ ПРАЙМ-ТАЙМ <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-zinc-100 to-zinc-500">НАЧИНАЕТСЯ ТУТ.</span>
+                </h1>
+                <p class="text-zinc-400 text-sm md:text-lg max-w-[50ch] leading-relaxed font-light">
+                    Ультимативный киберспортивный опыт. Заряженные ПК на базе RTX 4080, оригинальная периферия и мониторы 240Hz/360Hz. Хватит терпеть лаги дома.
+                </p>
+                <div class="pt-2 flex flex-col sm:flex-row gap-4">
+                    <a href="#rates" class="btn-tactile inline-flex justify-center items-center font-display font-bold uppercase tracking-widest bg-white text-zinc-950 px-8 py-4 text-xs hover:bg-emerald-400 transition-all rounded-sm">
+                        Выбрать зону
+                    </a>
+                    <button onclick="openModal()" class="btn-tactile inline-flex justify-center items-center font-display font-bold uppercase tracking-widest border border-white/10 bg-zinc-900/20 backdrop-blur-sm text-white px-8 py-4 text-xs hover:bg-white/5 transition-all rounded-sm">
+                        Быстрая бронь
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:col-span-5 w-full flex justify-center lg:justify-end">
+                <div id="heroCard" class="relative w-full aspect-square max-w-[450px] bg-zinc-950 border border-white/10 rounded-2xl overflow-hidden shadow-[0_30px_60px_-15px_rgba(0,0,0,0.9)] p-8 flex flex-col justify-between transition-transform duration-200 ease-out group neon-glow cursor-pointer">
+                    <div class="absolute inset-0 z-0 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-b from-zinc-950/30 via-transparent to-zinc-950 z-10"></div>
+                        <img src="premium_cockpit.jpg" alt="Premium Cockpit" class="w-full h-full object-cover opacity-50 group-hover:scale-105 transition-transform duration-700 ease-out">
+                    </div>
+                    <div class="flex justify-between items-start z-10">
+                        <div class="space-y-1">
+                            <p class="text-[10px] font-mono tracking-widest text-zinc-400 uppercase">[ ULTRA ZONE ]</p>
+                            <h3 class="font-display text-2xl font-bold text-white uppercase tracking-tight">VIP COCKPIT</h3>
+                        </div>
+                        <span class="text-xs font-mono bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 px-2 py-1 rounded">360 FPS</span>
+                    </div>
+                    <div class="py-12"></div>
+                    <div class="flex justify-between items-end border-t border-white/10 pt-4 z-10 w-full">
+                        <div>
+                            <p class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider">HARDWARE</p>
+                            <p class="text-xs text-zinc-300 font-mono">RTX 4080 SUPER / i9</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-[9px] font-mono text-zinc-500 uppercase tracking-wider">PRICE</p>
+                            <p class="text-sm font-bold text-emerald-400 font-display">150₽ / ЧАС</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="rates" class="py-32 px-6 md:px-12 relative z-30 border-b border-white/5">
+        <div class="max-w-[1400px] mx-auto space-y-16">
+            <div class="space-y-4 text-center lg:text-left">
+                <p class="text-xs font-mono text-emerald-400 uppercase tracking-widest">[ ТАРИФНЫЕ ПЛАНЫ И ЗОНЫ ]</p>
+                <h2 class="font-display text-4xl md:text-6xl font-bold uppercase tracking-tighter text-white">ВЫБЕРИ СВОЙ УРОВЕНЬ</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="relative bg-zinc-950/70 backdrop-blur-md border border-white/5 rounded-xl flex flex-col justify-between h-[360px] hover:border-zinc-700 transition-all overflow-hidden group">
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-950/70 to-zinc-950 z-10"></div>
+                        <img src="standard_desk.jpg" alt="Standard Zone" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="space-y-2 p-8 relative z-20">
+                        <h3 class="font-display text-xl font-bold uppercase">STANDARD ZONE</h3>
+                        <p class="text-zinc-400 text-xs">Идеальный баланс по соотношению цена/качество для каток с друзьями.</p>
+                        <ul class="text-[11px] text-zinc-500 pt-4 space-y-1 font-mono">
+                            <li>• GPU: RTX 4060</li>
+                            <li>• CPU: Intel i5-13400</li>
+                            <li>• Screen: ASUS 144Hz</li>
+                        </ul>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-white/5 p-8 pt-4 relative z-20 bg-zinc-950/80 backdrop-blur-sm">
+                        <span class="font-display font-bold text-lg text-white">80₽ / час</span>
+                        <button onclick="openModal()" class="btn-tactile text-[10px] uppercase font-bold bg-zinc-900 border border-white/10 px-4 py-2 hover:bg-white hover:text-black transition-all rounded-sm">Выбрать</button>
+                    </div>
+                </div>
+
+                <div class="relative bg-zinc-950/70 backdrop-blur-md border border-emerald-500/30 rounded-xl flex flex-col justify-between h-[360px] overflow-hidden shadow-[0_0_40px_rgba(16,185,129,0.05)] group">
+                    <div class="absolute top-0 right-0 bg-emerald-500 text-zinc-950 text-[9px] font-mono font-bold uppercase px-3 py-1 tracking-wider z-30">POPULAR</div>
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-950/60 to-zinc-950 z-10"></div>
+                        <img src="vip_room.jpg" alt="VIP Zone" class="w-full h-full object-cover opacity-45 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="space-y-2 p-8 relative z-20">
+                        <h3 class="font-display text-xl font-bold uppercase text-emerald-400">VIP BOOTH</h3>
+                        <p class="text-zinc-300 text-xs">Изолированные кабины, кастомные кресла и полное погружение.</p>
+                        <ul class="text-[11px] text-zinc-400 pt-4 space-y-1 font-mono">
+                            <li>• GPU: RTX 4070 Ti</li>
+                            <li>• CPU: Intel i7-13700</li>
+                            <li>• Screen: ZOWIE 240Hz</li>
+                        </ul>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-white/5 p-8 pt-4 relative z-20 bg-zinc-950/80 backdrop-blur-sm">
+                        <span class="font-display font-bold text-lg text-white">120₽ / час</span>
+                        <button onclick="openModal()" class="btn-tactile text-[10px] uppercase font-bold bg-emerald-500 text-zinc-950 px-4 py-2 hover:bg-emerald-400 transition-all rounded-sm">Выбрать</button>
+                    </div>
+                </div>
+
+                <div class="relative bg-zinc-950/70 backdrop-blur-md border border-white/5 rounded-xl flex flex-col justify-between h-[360px] hover:border-zinc-700 transition-all overflow-hidden group">
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute inset-0 bg-gradient-to-b from-zinc-950 via-zinc-950/70 to-zinc-950 z-10"></div>
+                        <img src="premium_cockpit.jpg" alt="Premium Bootcamp" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-500">
+                    </div>
+                    <div class="space-y-2 p-8 relative z-20">
+                        <h3 class="font-display text-xl font-bold uppercase">PREMIUM BOOTCAMP</h3>
+                        <p class="text-zinc-400 text-xs">Турнирные места, закрытая тим-рум зона для праков и стримов.</p>
+                        <ul class="text-[11px] text-zinc-500 pt-4 space-y-1 font-mono">
+                            <li>• GPU: RTX 4080 SUPER</li>
+                            <li>• CPU: Intel i9-14900K</li>
+                            <li>• Screen: ROG 360Hz</li>
+                        </ul>
+                    </div>
+                    <div class="flex justify-between items-center border-t border-white/5 p-8 pt-4 relative z-20 bg-zinc-950/80 backdrop-blur-sm">
+                        <span class="font-display font-bold text-lg text-white">160₽ / час</span>
+                        <button onclick="openModal()" class="btn-tactile text-[10px] uppercase font-bold bg-zinc-900 border border-white/10 px-4 py-2 hover:bg-white hover:text-black transition-all rounded-sm">Выбрать</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="bar" class="py-32 px-6 md:px-12 relative z-30 border-b border-white/5">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-5 space-y-4">
+                <p class="text-xs font-mono text-emerald-400 uppercase tracking-widest">[ ЭНЕРГИЯ ДЛЯ КАТКИ ]</p>
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase tracking-tighter text-white">АРЕНА БАР</h2>
+                <p class="text-zinc-400 text-sm font-light leading-relaxed">
+                    Не нужно отвлекаться от игры. Заказывай энергетики, сочные сэндвичи, бургеры и фирменные снеки прямо к своему игровому месту через админа.
+                </p>
+            </div>
+            <div class="lg:col-span-7 bg-zinc-950/60 backdrop-blur-md border border-white/5 rounded-xl p-8 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono text-xs">
+                <div class="border-b border-white/5 pb-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-white font-bold">Adrenaline Rush / Red Bull</p>
+                        <p class="text-zinc-500 text-[10px]">0.5 л, холодный</p>
+                    </div>
+                    <span class="text-emerald-400 font-bold">160₽</span>
+                </div>
+                <div class="border-b border-white/5 pb-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-white font-bold">Фирменный Клаб-Сэндвич</p>
+                        <p class="text-zinc-500 text-[10px]">С курицей и соусом</p>
+                    </div>
+                    <span class="text-emerald-400 font-bold">190₽</span>
+                </div>
+                <div class="border-b border-white/5 pb-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-white font-bold">Чипсы Pringles (в ассорт.)</p>
+                        <p class="text-zinc-500 text-[10px]">Большая банка</p>
+                    </div>
+                    <span class="text-emerald-400 font-bold">220₽</span>
+                </div>
+                <div class="border-b border-white/5 pb-4 flex justify-between items-center">
+                    <div>
+                        <p class="text-white font-bold">Кофе Капучино / Латте</p>
+                        <p class="text-zinc-500 text-[10px]">Зерновой, 300 мл</p>
+                    </div>
+                    <span class="text-emerald-400 font-bold">120₽</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-32 px-6 md:px-12 relative z-30 border-b border-white/5">
+        <div class="max-w-[800px] mx-auto space-y-12">
+            <div class="text-center space-y-2">
+                <p class="text-xs font-mono text-emerald-400 uppercase tracking-widest">[ ОТВЕТЫ НА ВОПРОСЫ ]</p>
+                <h2 class="font-display text-3xl md:text-5xl font-bold uppercase tracking-tighter text-white">ЧАСТО СПРАШИВАЮТ</h2>
+            </div>
+
+            <div class="space-y-2">
+                <div class="faq-border py-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-sm md:text-base font-medium text-white group-hover:text-emerald-400 transition-colors">
+                        <span>Можно ли приходить со своими девайсами (мышкой, наушниками)?</span>
+                        <span class="font-display text-xl text-zinc-500 transition-transform duration-300 group-hover:text-white toggle-icon">+</span>
+                    </div>
+                    <div class="faq-content text-xs md:text-sm text-zinc-400 font-light mt-0 transition-all">
+                        <p class="pt-4 leading-relaxed">Да, конечно! Ты можешь без проблем подключить свою мышь, клавиатуру, коврик или наушники. Администратор зала поможет переставить девайсы, если возникнут трудности.</p>
+                    </div>
+                </div>
+
+                <div class="faq-border py-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-sm md:text-base font-medium text-white group-hover:text-emerald-400 transition-colors">
+                        <span>Как работает система бронирования пакетов «Ночь»?</span>
+                        <span class="font-display text-xl text-zinc-500 transition-transform duration-300 group-hover:text-white toggle-icon">+</span>
+                    </div>
+                    <div class="faq-content text-xs md:text-sm text-zinc-400 font-light mt-0 transition-all">
+                        <p class="pt-4 leading-relaxed">Ночной пакет действует с 22:00 до 08:00. Из-за высокого спроса мы рекомендуем бронировать места минимум за пару часов до начала пакета через наш телефон или группу ВК.</p>
+                    </div>
+                </div>
+
+                <div class="faq-border py-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center text-sm md:text-base font-medium text-white group-hover:text-emerald-400 transition-colors">
+                        <span>Какое железо установлено в VIP-зонах?</span>
+                        <span class="font-display text-xl text-zinc-500 transition-transform duration-300 group-hover:text-white toggle-icon">+</span>
+                    </div>
+                    <div class="faq-content text-xs md:text-sm text-zinc-400 font-light mt-0 transition-all">
+                        <p class="pt-4 leading-relaxed">В VIP-кабинах стоят топовые сборки: видеокарты RTX 4070 Ti / 4080 SUPER, процессоры Intel i7/i9 последних поколений, 32 GB оперативной памяти и профессиональные киберспортивные мониторы с частотой обновления 240Hz и 360Hz.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="footer" class="py-16 px-6 md:px-12 text-zinc-500 text-xs font-mono uppercase tracking-wider relative z-30">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center border-b border-white/5 pb-12 mb-12">
+            <div class="space-y-4">
+                <h4 class="font-display text-white text-lg font-bold">КОНТАКТЫ & АДРЕС</h4>
+                <p class="text-zinc-400 font-light">Ждем тебя на Арене круглые сутки. Залетай на соло катки или командные праки.</p>
+                <div class="space-y-1 text-[11px]">
+                    <p class="text-white">📍 г. Ставрополь, пр. Кулакова, 15 (ТЦ, 3 этаж)</p>
+                    <p class="text-white">📞 ТЕЛЕФОН: +7 (999) 123-45-67</p>
+                    <p class="text-zinc-500">✉️ VK / TELEGRAM: @arena_cyberclub</p>
+                </div>
+            </div>
+            <div class="w-full h-48 bg-zinc-950/50 backdrop-blur-sm border border-white/5 rounded-xl flex items-center justify-center text-zinc-600 text-[10px]">
+                [ ЗДЕСЬ БУДЕТ ИНТЕГРИРОВАНА ИНТЕРФЕЙСНАЯ КАРТА ЯНДЕКС / 2ГИС ]
+            </div>
+        </div>
+        <div class="max-w-[1400px] mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-[10px]">
+            <div>© 2026 АРЕНА Киберспорт. Все права защищены.</div>
+            <div class="text-zinc-400 font-bold tracking-widest bg-zinc-900/50 px-3 py-1.5 border border-white/5 hover:text-emerald-400 hover:border-emerald-500/30 transition-all duration-300">
+                DESIGNED & CODED BY <span class="text-white">@GIFTROT</span>
+            </div>
+        </div>
+    </footer>
+
+    <div id="bookingModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-md hidden items-center justify-center p-4 opacity-0 transition-opacity duration-300">
+        <div class="bg-zinc-950 border border-white/10 p-8 rounded-2xl max-w-sm w-full space-y-6 transform scale-95 transition-transform duration-300 text-center">
+            <h3 class="font-display text-2xl font-bold uppercase text-white">Бронирование</h3>
+            <p class="text-zinc-400 text-sm font-light">Для выбора конкретного ПК и брони сессии свяжись с администратором клуба:</p>
+            <p class="text-xl font-mono font-bold text-emerald-400 tracking-wider">+7 (999) 123-45-67</p>
+            <button onclick="closeModal()" class="w-full font-display text-xs font-bold uppercase tracking-widest bg-zinc-900 border border-white/10 py-3 text-white hover:bg-white hover:text-black transition-all rounded-sm">Закрыть</button>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modal.querySelector('div').classList.remove('scale-95');
+            }, 10);
+        }
+        function closeModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.classList.add('opacity-0');
+            modal.querySelector('div').classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }, 300);
+        }
+
+        function toggleFaq(element) {
+            const content = element.querySelector('.faq-content');
+            const icon = element.querySelector('.toggle-icon');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== '0px') {
+                content.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+                icon.textContent = '+';
+            } else {
+                document.querySelectorAll('.faq-content').forEach(el => el.style.maxHeight = '0px');
+                document.querySelectorAll('.toggle-icon').forEach(el => { el.textContent = '+'; el.style.transform = 'rotate(0deg)'; });
+                
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.style.transform = 'rotate(45deg)';
+                icon.textContent = '×';
+            }
+        }
+
+        const card = document.getElementById('heroCard');
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left - (rect.width / 2);
+            const y = e.clientY - rect.top - (rect.height / 2);
+            card.style.transform = `perspective(1000px) rotateX(${-y / 15}deg) rotateY(${x / 15}deg) scale(1.02)`;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)';
+        });
+    </script>
+
+</body>
+</html>
